@@ -117,8 +117,10 @@ export default function ToDoDialogEdit({ setLoad, item, setUpdateCal }) {
                             id="standard-multiline-static"
                             multiline
                             rows={4}
-                            variant="standard"
+                            label="Description"
+                            placeholder="Description"
                             defaultValue={valueDescription}
+                            variant="standard"
                             onChange={handleValueDescription}
                         />
                     </DialogContent>

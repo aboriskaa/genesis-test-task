@@ -94,7 +94,9 @@ export default function ToDoDialog({ day, setUpdateCal, db }) {
                             id="standard-multiline-static"
                             multiline
                             rows={4}
-                            defaultValue="Description"
+                            label="Description"
+                            placeholder="Description"
+                            defaultValue={valueDescription}
                             variant="standard"
                             onChange={handleValueDescription}
                         />
