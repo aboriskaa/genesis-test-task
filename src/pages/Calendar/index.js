@@ -6,11 +6,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 const totalDays = 42;
 
+moment.updateLocale('en', { week: { dow: 1 } });
+
 export default function Calendar({ today }) {
 
     const [updateCal, setUpdateCal] = useState('');
 
-    moment.updateLocale('en', { week: { dow: 1 } });
+
     const startDay = today.clone().startOf('month').startOf('week');
 
     const day = startDay.clone().subtract(1, 'day');

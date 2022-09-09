@@ -7,7 +7,10 @@ import DialogTitle from '@mui/material/DialogTitle';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Fab from '@mui/material/Fab';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
@@ -51,6 +54,21 @@ export default function ToDoDialogEdit({ setLoad, item, setUpdateCal }) {
 
     };
 
+    const handleDel = () => {
+
+        let array = []
+        let newArr = []
+
+        array = JSON.parse(localStorage.getItem('ideas'))
+
+        newArr = array.filter((e) => e.id !== item.id)
+
+        localStorage.setItem('ideas', JSON.stringify([...newArr]))
+        setLoad(uuidv4())
+        setOpen(false);
+
+    };
+
     const handleValueTitle = (e) => {
         setValueTitle(e.target.value)
     };
@@ -77,6 +95,7 @@ export default function ToDoDialogEdit({ setLoad, item, setUpdateCal }) {
             <ListItem disablePadding>
                 <ListItemButton onClick={handleClickOpen}>
                     <ListItemText primary={moment(valueTime).format('HH:mm')} />
+                    <ListItemText secondary={' '} />
                     <ListItemText secondary={valueTitle} />
                 </ListItemButton>
             </ListItem>
@@ -122,7 +141,14 @@ export default function ToDoDialogEdit({ setLoad, item, setUpdateCal }) {
                         </DialogContent>
                     </LocalizationProvider>
                 </DialogContent>
-                <DialogActions>
+
+                <Box sx={{ display: 'flex', alignItem: 'center', justifyContent: 'center', m: 1 }}>
+                    <Fab size="small" color="secondary" aria-label="remove" sx={{ alignSelf: 'center' }} onClick={handleDel}>
+                        <DeleteIcon />
+                    </Fab>
+                </Box>
+
+                <DialogActions >
                     <Button disabled={!valueTitle} onClick={handleSave}>Save</Button>
                     <Button onClick={handleClose}>Close</Button>
                 </DialogActions>

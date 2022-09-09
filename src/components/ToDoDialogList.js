@@ -15,6 +15,8 @@ import ToDoDialogEdit from './ToDoDialogEdit';
 
 export default function ToDoDialogList({ day, setLoad, setUpdateCal }) {
 
+    const [open, setOpen] = useState(false);
+
     let array = []
     array = JSON.parse(localStorage.getItem('ideas'))
     let newBd = [];
@@ -22,7 +24,6 @@ export default function ToDoDialogList({ day, setLoad, setUpdateCal }) {
 
     newBd.sort((a, b) => a.time - b.time)
 
-    const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -35,11 +36,20 @@ export default function ToDoDialogList({ day, setLoad, setUpdateCal }) {
 
     return (
         <>
-            <IconButton onClick={handleClickOpen}>
-                <Badge badgeContent={newBd.length} color="primary">
-                    <ListAltIcon />
-                </Badge>
-            </IconButton>
+            {newBd.length < 1 ?
+                <IconButton disabled>
+                    <Badge badgeContent={newBd.length} color="primary">
+                        <ListAltIcon />
+                    </Badge>
+                </IconButton>
+                :
+                <IconButton onClick={handleClickOpen}>
+                    <Badge badgeContent={newBd.length} color="primary">
+                        <ListAltIcon />
+                    </Badge>
+                </IconButton>
+            }
+
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Select your item</DialogTitle>
                 <DialogContent>
