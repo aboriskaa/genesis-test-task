@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
+import Alert from '@mui/material/Alert';
 import List from '@mui/material/List';
 import { isSelectedDay } from '../utils'
 import { v4 as uuidv4 } from 'uuid';
@@ -53,16 +54,19 @@ export default function ToDoDialogList({ day, setLoad, setUpdateCal }) {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Select your item</DialogTitle>
                 <DialogContent>
-                    <List
-                        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                        aria-label="contacts"
-                    >
-                        {newBd.map((e) => {
-                            return (
-                                <ToDoDialogEdit key={uuidv4()} item={e} setLoad={setLoad} setUpdateCal={setUpdateCal} />
-                            )
-                        })}
-                    </List>
+                    {newBd.length < 1 ? <Alert severity="info">There are no new items!</Alert>
+                        :
+                        <List
+                            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                            aria-label="contacts"
+                        >
+                            {newBd.map((e) => {
+                                return (
+                                    <ToDoDialogEdit key={uuidv4()} item={e} setLoad={setLoad} setUpdateCal={setUpdateCal} />
+                                )
+                            })}
+                        </List>
+                    }
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Close</Button>

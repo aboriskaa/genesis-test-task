@@ -143,7 +143,7 @@ export default function ToDoDialogEdit({ setLoad, item, setUpdateCal }) {
                 </DialogContent>
 
                 <Box sx={{ display: 'flex', alignItem: 'center', justifyContent: 'center', m: 1 }}>
-                    <Fab size="small" color="secondary" aria-label="remove" sx={{ alignSelf: 'center' }} onClick={handleDel}>
+                    <Fab size="small" color="secondary" aria-label="remove" onClick={handleDel}>
                         <DeleteIcon />
                     </Fab>
                 </Box>
