@@ -100,7 +100,7 @@ export default function ToDoDialogEdit({ setLoad, item, setUpdateCal }) {
                 </ListItemButton>
             </ListItem>
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Add new idea item</DialogTitle>
+                <DialogTitle>Edit your item</DialogTitle>
                 <DialogContent>
                     <DialogContent>
                         <TextField
